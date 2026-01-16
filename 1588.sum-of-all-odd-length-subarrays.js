@@ -4,24 +4,16 @@
  * @return {number}
  */
 var sumOddLengthSubarrays = function (arr) {
+  let n = arr.length;
   let result = 0;
-
-  for (let i = arr.length; i > -1; i--) {
-    if (i % 2 != 0) {
-      let start = 0;
-      let end = i - 1;
-
-      while (end < arr.length) {
-        for (let k = start; k <= end; k++) {
-          result += arr[k];
-        }
-
-        start++;
-        end++;
-      }
-    }
+  for (let i = 0; i < n; i++) {
+    let left = i + 1;
+    let right = n - i;
+    let totalSubarrays = left * right;
+    let oddCount = Math.floor((totalSubarrays + 1) / 2);
+    result += arr[i] * oddCount;
   }
-
   return result;
 };
 // @leet end
+
